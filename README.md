@@ -34,7 +34,7 @@ netmovies.store
        mkdir -p /root/.ssh
        echo public_key >> /root/.ssh/authorized_keys
        chmod 600 /root/.ssh/authorized_keys
-       chmod 700 /root/.ssh```
+       chmod 700 /root/.ssh ```
 - ### Configuration de l'accès SSH Sécurisé :
     ```sudo vim /etc/ssh/sshd_config  ```
 - Modification des lignes suivantes:
@@ -45,12 +45,12 @@ PasswordAuthentication no
 ``` sudo service sshd reload ```
 - ### Création d'un nouvel user :
   ```sudo adduser adminserv
-  cd /home/[username]
-  mkdir .ssh
-  vim .ssh/authorized_keys
-  sudo chown adminserv:adminserv -R .ssh
-  sudo usermod -aG sudo adminserv
-  ssh -p 2803 adminserv@adminserv
+     cd /home/[username]
+     mkdir .ssh
+     vim .ssh/authorized_keys
+     sudo chown adminserv:adminserv -R .ssh
+     sudo usermod -aG sudo adminserv
+     ssh -p 2803 adminserv@adminserv
   ```
 
   ## Intégration du projet et de la database :
