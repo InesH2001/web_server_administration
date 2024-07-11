@@ -141,7 +141,9 @@ maxretry = 3
 
 sudo systemctl restart fail2ban
 sudo fail2ban-client status
-sudo systemctl status nginx 
+sudo systemctl status nginx
+sudo nano /etc/fail2ban/jail.local
+
 ```
 
 ## Execution Samba :
