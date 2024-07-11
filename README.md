@@ -1,7 +1,7 @@
 
 # Nom de domaine en HTTPS: 
 
-[https://netmovies.store/](https://netmovies.store/) [https://netmovies.store/adminer](https://netmovies.store/adminer)
+[https://netmovies.store/](https://netmovies.store/) [https://netmovies.store/adminer](https://netmovies.store/adminer) [https://netmovies.store/api/pilots](https://netmovies.store/api/pilots)
 
 
 # Achat de nom domaine sur OVH : 
@@ -63,13 +63,20 @@ netmovies.store
     - Ngnix.conf
     - Docker-compose.yml : (Configuration du Certbot et Samba dans le docker-compose)
 
- ## Configuration du Certbot : 
+ ## Excution Certbot : 
  Génération du certificat SSL : ```sudo deocker compose run certbot certonly standole -d ```
 
 <img width="1440" alt="Capture d’écran 2024-07-11 à 21 39 44" src="https://github.com/user-attachments/assets/8ca620a2-56b8-4b0c-80b2-0bdf1717f94f">
 
 
- ## Configuration du Samba : 
+ ## Excution Samba : 
+ Pour y accèder : 
+  - Sur Windows : \IPV4\share
+  - Sur Mac : smb://IPV4/share
+
+Pour y acceder : 
+Nom d'utilisateur : srvuser 
+Password : srvuserpassword
  
 
 
