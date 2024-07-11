@@ -64,8 +64,17 @@ netmovies.store
     - Docker-compose.yml : (Configuration du Certbot et Samba dans le docker-compose)
 
  ## Certbot : 
- Génération du certificat SSL 
- Renouvellement toute les 12h
+ Génération des certificats SSL 
+  ``` docker run -it --rm \
+  -v /etc/letsencrypt:/etc/letsencrypt \
+  -v /var/lib/letsencrypt:/var/lib/letsencrypt \
+  certbot/certbot certonly \
+  --webroot -w /var/www/html \
+  -d netmovies.store
+ ```
+ Vérification régulière (toutes les 12h) si les certificats doivent etre renouvelés
+ Forcer le renouvelement du certificat: 
+  ``` docker exec -it netmovies_certbot_1 certbot renew --dry-run  ```
 
 <img width="1440" alt="Capture d’écran 2024-07-11 à 21 39 44" src="https://github.com/user-attachments/assets/8ca620a2-56b8-4b0c-80b2-0bdf1717f94f">
 
