@@ -1,5 +1,5 @@
 
-# Nom de domaine en HTTPS: 
+# Nom de domaine en HTTPS : 
 
 [https://netmovies.store/](https://netmovies.store/) [https://netmovies.store/adminer](https://netmovies.store/adminer) [https://netmovies.store/api/pilots](https://netmovies.store/api/pilots)
 
@@ -144,7 +144,7 @@ sudo fail2ban-client status
 sudo systemctl status nginx 
 ```
 
-## Excution Samba :
+## Execution Samba :
 
  Pour y accèder : 
   - Sur Windows : \IPV4\share
