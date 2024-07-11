@@ -1,0 +1,108 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - web_network
+
+  backend:
+    build:
+      context: ./backend
+    container_name: backend
+    environment:
+      - DATABASE_HOST=database
+      - DATABASE_PORT=5432
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=mysecretpassword
+      - DATABASE_NAME=mydatabase
+    networks:
+      - web_network
+      - database_network
+
+  database:
+    image: postgres:13
+    container_name: database
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: mydatabase
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - database_network
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - "8081:8080"
+    networks:
+      - web_network
+      - database_network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - /etc/letsencrypt/live/netmovies.store/fullchain.pem:/etc/nginx/certs/fullchain.pem
+      - /etc/letsencrypt/live/netmovies.store/privkey.pem:/etc/nginx/certs/privkey.pem
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - frontend
+      - backend
+      - adminer
+    networks:
+      - web_network
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+    entrypoint: /bin/sh -c "trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;"
+    networks:
+      - web_network
+
+  samba:
+    image: elswork/samba
+    ports:
+      - 139:139
+      - 445:445
+    volumes:
+      - ./samba:/mount
+    environment:
+      - SAMBA_USER=servuser
+      - SAMBA_PASS=servuserpassword
+      - SAMBA_SHARE_NAME=share
+      - SAMBA_SHARE_PATH=/mount
+      - SAMBA_READ_ONLY=false
+      - SAMBA_PUBLIC=false
+    networks:
+      - web_network
+      - database_network
+    command: >
+      -u "1000:1000:servuser:servuser:servuserpassword"
+      -s "share:/mount:rw:servuser"
+      
+volumes:
+  postgres_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /srv/postgres_data
+  samba:
+
+networks:
+  web_network:
+  database_network:
+
+
