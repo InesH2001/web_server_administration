@@ -1,4 +1,8 @@
 
+# Nom de domaine en HTTPS: 
+
+[https://netmovies.store/](https://netmovies.store/) [https://netmovies.store/adminer](https://netmovies.store/adminer)
+
 
 # Achat de nom domaine sur OVH : 
 
@@ -57,10 +61,14 @@ netmovies.store
   - ### Création du fichier de conf d'NGNIX :
     - Default.conf
     - Ngnix.conf
-    - Docker-compose.yml : (Configuration du certbot dans le docker-compose)
+    - Docker-compose.yml : (Configuration du Certbot et Samba dans le docker-compose)
 
  ## Configuration du Certbot : 
  Génération du certificat SSL : ```sudo deocker compose run certbot certonly standole -d
+
+ ## Configuration du Samba : 
+
+
  
    
 
