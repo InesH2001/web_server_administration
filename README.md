@@ -20,30 +20,33 @@ netmovies.store
     Debian
 
 ## Configuration du serveur : 
-
-- ### Ajouter un nouveau user :
-    ```sudo adduser adminserv ```
-
-- ### Ajouter l'utilisateur au groupe sudo :
-  ```sudo usermod -aG sudo adminserv ```
-  
-- ### Create SSH Key :
- 
-   Génération la clé SSH
-   ``` ssh-keygen -t rsa -b 4096 -C "notre e-mail" ```
-
-   CP clé publique
-   ``` cat ~/.ssh/id_rsa.pub ```
-
-   Se connecter au serveur Digital Ocean :
-   ``` ssh -p 2803 adminserv@IPV4 ```
-
-   Ajouter la clé SSH au fichier 'authorized_keys' :
-   ``` echo "clé_publique_copiée" >> ~/.ssh/authorized_keys ```
-
-   Attribuer les bonnes permissions : ``` sudo chmod 700 /home/new_username/.ssh ```
-   ``` sudo chmod 600 /home/new_username/.ssh/authorized_keys```
-   ``` sudo chown -R new_username:new_username /home/new_username/.ssh ```
+- ### Génération d'une clé SSH :
+    ```ssh-keygen -t ed25519 -C "votre_email@example.com" ```
+- ### Ajout de la clé SSH Publique à la Droplet :
+    ```cat ~/.ssh/id_ed25519.pub
+       ssh root@ip
+       mkdir -p /root/.ssh
+       echo public_key >> /root/.ssh/authorized_keys
+       chmod 600 /root/.ssh/authorized_keys
+       chmod 700 /root/.ssh
+ ```
+- ### Configuration de l'accès SSH Sécurisé :
+    ```sudo vim /etc/ssh/sshd_config  ```
+- Modification des lignes suivantes:
+Port 2803
+PermitRootLogin no
+PasswordAuthentication no
+- Recharger le Service SSH:
+sudo service sshd reload
+- ### Création d'un nouvel user :
+ ```sudo adduser adminserv
+ cd /home/[username]
+ mkdir .ssh
+ vim .ssh/authorized_keys
+ sudo chown adminserv:adminserv -R .ssh
+ sudo usermod -aG sudo adminserv
+ ssh -p 2803 adminserv@adminserv
+ ```
 
   ## Intégration du projet et de la database :
 
@@ -73,6 +76,7 @@ netmovies.store
   -d netmovies.store
  ```
  Vérification régulière (toutes les 12h) si les certificats doivent etre renouvelés
+ 
  Forcer le renouvelement du certificat: 
   ``` docker exec -it netmovies_certbot_1 certbot renew --dry-run  ```
 
@@ -85,7 +89,7 @@ netmovies.store
   - Sur Mac : smb://IPV4/share
 
 Pour y acceder : 
-Nom d'utilisateur : srvuser 
+Nom d'utilisateur : servuser 
 Password : **********************
  
 
