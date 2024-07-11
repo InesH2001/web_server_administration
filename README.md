@@ -64,7 +64,7 @@ netmovies.store
     - Docker-compose.yml : (Configuration du Certbot et Samba dans le docker-compose)
 
  ## Configuration du Certbot : 
- Génération du certificat SSL : ```sudo deocker compose run certbot certonly standole -d
+ Génération du certificat SSL : ```sudo deocker compose run certbot certonly standole -d ```
 
  ## Configuration du Samba : 
 
