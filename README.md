@@ -8,6 +8,7 @@
 
 netmovies.store
 
+
 # Configuration de l'hébergeur Digital Ocean : 
 
 ## Création de la droplet sur DO : 
@@ -18,6 +19,11 @@ netmovies.store
     Londres
  - ### Image :
     Debian
+
+   Configuration du nom de domaine dans DO et OVH :
+
+   <img width="1201" alt="Capture d’écran 2024-07-11 à 23 17 29" src="https://github.com/user-attachments/assets/8a2b5ae3-1ad4-4ab8-b819-d9d1c63956a8">
+
 
 ## Configuration du serveur : 
 - ### Génération d'une clé SSH :
@@ -81,8 +87,15 @@ PasswordAuthentication no
 
 <img width="1440" alt="Capture d’écran 2024-07-11 à 21 39 44" src="https://github.com/user-attachments/assets/8ca620a2-56b8-4b0c-80b2-0bdf1717f94f">
 
+ ## Fail2ban : 
 
- ## Excution Samba : 
+``` sudo systemctl restart fail2ban
+sudo fail2ban-client status
+sudo systemctl status nginx ```
+
+
+ ## Excution Samba :
+
  Pour y accèder : 
   - Sur Windows : \IPV4\share
   - Sur Mac : smb://IPV4/share
