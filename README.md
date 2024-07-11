@@ -71,6 +71,10 @@ PasswordAuthentication no
     - Ngnix.conf
     - Docker-compose.yml : (Configuration du Certbot et Samba dans le docker-compose)
 
+ ## HTTPS : 
+
+Configuration du serveur Nginx pour gérer les connexions HTTPS et pour proxy les requetes vers le frontend, le backend et Adminer
+
  ## Certbot : 
  Génération des certificats SSL 
   ``` docker run -it --rm \
@@ -89,12 +93,58 @@ PasswordAuthentication no
 
  ## Fail2ban : 
 
-``` sudo systemctl restart fail2ban
+
+``` 
+sudo nano /etc/fail2ban/jail.local
+[nginx-http-auth]
+enabled  = true
+port     = http,https
+filter   = nginx-http-auth
+logpath  = /var/log/nginx/error.log
+maxretry = 3
+
+[nginx-botsearch]
+enabled  = true
+port     = http,https
+filter   = nginx-botsearch
+logpath  = /var/log/nginx/access.log
+maxretry = 2
+
+[nginx-noscript]
+enabled  = true
+port     = http,https
+filter   = nginx-noscript
+logpath  = /var/log/nginx/error.log
+maxretry = 6
+
+[nginx-proxy]
+enabled  = true
+port     = http,https
+filter   = nginx-proxy
+logpath  = /var/log/nginx/error.log
+maxretry = 0
+
+[nginx-limit-req]
+enabled  = true
+port     = http,https
+filter   = nginx-limit-req
+logpath  = /var/log/nginx/error.log
+maxretry = 5
+
+
+[adminer]
+enabled  = true
+port     = http,https
+filter   = adminer
+logpath  = /var/log/php/adminer.log
+maxretry = 3
+
+sudo systemctl restart fail2ban
 sudo fail2ban-client status
-sudo systemctl status nginx ```
+sudo systemctl status nginx 
+```
 
-
- ## Excution Samba :
+## Excution Samba :
 
  Pour y accèder : 
   - Sur Windows : \IPV4\share
