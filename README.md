@@ -65,6 +65,7 @@ netmovies.store
 
  ## Excution Certbot : 
  Génération du certificat SSL : ```sudo deocker compose run certbot certonly standole -d ```
+ Renouvellement toute les 12h
 
 <img width="1440" alt="Capture d’écran 2024-07-11 à 21 39 44" src="https://github.com/user-attachments/assets/8ca620a2-56b8-4b0c-80b2-0bdf1717f94f">
 
