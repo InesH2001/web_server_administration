@@ -139,14 +139,16 @@ filter   = adminer
 logpath  = /var/log/php/adminer.log
 maxretry = 3
 
+sudo nano /etc/fail2ban/jail.local
 sudo systemctl restart fail2ban
 sudo fail2ban-client status
+sudo tail -n 50 /var/log/fail2ban.log
 sudo systemctl status nginx
-sudo nano /etc/fail2ban/jail.local
+
 
 ```
 
-## Execution Samba :
+## Samba :
 
  Pour y accèder : 
   - Sur Windows : \IPV4\share
