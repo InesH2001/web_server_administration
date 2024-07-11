@@ -38,14 +38,14 @@ PasswordAuthentication no
 - Recharger le Service SSH:
 ``` sudo service sshd reload ```
 - ### Création d'un nouvel user :
- ```sudo adduser adminserv
- cd /home/[username]
- mkdir .ssh
- vim .ssh/authorized_keys
- sudo chown adminserv:adminserv -R .ssh
- sudo usermod -aG sudo adminserv
- ssh -p 2803 adminserv@adminserv
- ```
+  ```sudo adduser adminserv
+  cd /home/[username]
+  mkdir .ssh
+  vim .ssh/authorized_keys
+  sudo chown adminserv:adminserv -R .ssh
+  sudo usermod -aG sudo adminserv
+  ssh -p 2803 adminserv@adminserv
+  ```
 
   ## Intégration du projet et de la database :
 
