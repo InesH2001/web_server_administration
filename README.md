@@ -77,7 +77,7 @@ netmovies.store
 
 Pour y acceder : 
 Nom d'utilisateur : srvuser 
-Password : srvuserpassword
+Password : **********************
  
 
 
