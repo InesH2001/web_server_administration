@@ -66,7 +66,11 @@ netmovies.store
  ## Configuration du Certbot : 
  Génération du certificat SSL : ```sudo deocker compose run certbot certonly standole -d ```
 
+ ![Uploading Capture d’écran 2024-07-11 à 21.36.58.png…]()
+
+
  ## Configuration du Samba : 
+ 
 
 
  
