@@ -28,8 +28,7 @@ netmovies.store
        mkdir -p /root/.ssh
        echo public_key >> /root/.ssh/authorized_keys
        chmod 600 /root/.ssh/authorized_keys
-       chmod 700 /root/.ssh
- ```
+       chmod 700 /root/.ssh```
 - ### Configuration de l'accès SSH Sécurisé :
     ```sudo vim /etc/ssh/sshd_config  ```
 - Modification des lignes suivantes:
@@ -37,7 +36,7 @@ Port 2803
 PermitRootLogin no
 PasswordAuthentication no
 - Recharger le Service SSH:
-sudo service sshd reload
+``` sudo service sshd reload ```
 - ### Création d'un nouvel user :
  ```sudo adduser adminserv
  cd /home/[username]
